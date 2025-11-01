@@ -423,6 +423,14 @@
     [
       "9e6d6147-95e6-4ef0-a238-5628802dd2a2",
       "power_USB"
+    ],
+    [
+      "8ccc7d78-7fff-4ea9-ae85-5bc136b35526",
+      "Frontend_1"
+    ],
+    [
+      "da643be3-27fb-4612-98dc-987101ff2fa5",
+      "Frontend_2"
     ]
   ],
   "text_variables": {}
