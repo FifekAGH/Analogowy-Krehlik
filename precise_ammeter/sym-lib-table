@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "INA121U")(type "KiCad")(uri "${KIPRJMOD}/libs/INA121U/INA121U.kicad_sym")(options "")(descr ""))
   (lib (name "TLV9001IDCKR")(type "KiCad")(uri "${KIPRJMOD}/libs/TLV9001IDCKR/TLV9001IDCKR.kicad_sym")(options "")(descr ""))
+  (lib (name "INA137UA")(type "KiCad")(uri "${KIPRJMOD}/libs/INA137UA/INA137UA.kicad_sym")(options "")(descr ""))
 )
