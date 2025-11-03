@@ -628,6 +628,130 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Regulator_SwitchedCapacitor:LMC7660"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2338,10 +2462,10 @@
 		)
 		(uuid "d9162ff9-39dc-428c-9ac0-69570009af64")
 	)
-	(text_box "Pin 6 (LV) has to be NC for V+ >= 3.5V\nPin 8 (V+) can be connected to pin 7 (OSC) in order to\nslow down the internal 10kHz oscillator."
+	(text_box "Pin 6 (LV) has to be NC for V+ >= 3.5V\n\nPin 8 (V+) can be connected through C28 to pin 7 (OSC) in order to\nslow down the internal 10kHz oscillator."
 		(exclude_from_sim no)
 		(at 220.98 144.78 0)
-		(size 40.64 15.24)
+		(size 43.18 15.24)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -2588,6 +2712,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 168.91) (xy 83.82 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "09dc27c1-8549-4ac2-a9eb-3bec0923a5d7")
+	)
+	(wire
+		(pts
 			(xy 198.12 45.72) (xy 198.12 44.45)
 		)
 		(stroke
@@ -2708,16 +2842,6 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 179.07) (xy 77.47 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2b6895d8-31c9-4277-bb99-b83eb314bcb9")
-	)
-	(wire
-		(pts
 			(xy 81.28 114.3) (xy 81.28 116.84)
 		)
 		(stroke
@@ -2755,6 +2879,16 @@
 			(type default)
 		)
 		(uuid "35b3f0da-3d22-4d98-ac6d-61c73a91d810")
+	)
+	(wire
+		(pts
+			(xy 67.31 179.07) (xy 71.12 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "391d8bfa-2655-48c6-8602-f5158b1ac100")
 	)
 	(wire
 		(pts
@@ -2978,6 +3112,16 @@
 	)
 	(wire
 		(pts
+			(xy 78.74 179.07) (xy 93.98 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72a0a0bc-3232-48c1-9d96-4b27f1162938")
+	)
+	(wire
+		(pts
 			(xy 81.28 116.84) (xy 85.09 116.84)
 		)
 		(stroke
@@ -3188,7 +3332,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 166.37) (xy 86.36 168.91)
+			(xy 81.28 166.37) (xy 81.28 168.91)
 		)
 		(stroke
 			(width 0)
@@ -3218,7 +3362,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 179.07) (xy 77.47 173.99)
+			(xy 67.31 179.07) (xy 67.31 173.99)
 		)
 		(stroke
 			(width 0)
@@ -3358,16 +3502,6 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 168.91) (xy 86.36 168.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dc8334eb-6765-47bd-8e78-28ae4cd693f5")
-	)
-	(wire
-		(pts
 			(xy 81.28 124.46) (xy 85.09 124.46)
 		)
 		(stroke
@@ -3475,6 +3609,16 @@
 			(type default)
 		)
 		(uuid "f1f9c3c5-e674-43ad-b493-eb0ac531f0a2")
+	)
+	(wire
+		(pts
+			(xy 91.44 168.91) (xy 93.98 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f554226a-8dc6-4865-88f6-312a16a24c50")
 	)
 	(wire
 		(pts
@@ -3968,6 +4112,74 @@
 			(project "precise_ammeter"
 				(path "/7da3b652-85ac-4caa-8d8d-9cad461e9c85/9e6d6147-95e6-4ef0-a238-5628802dd2a2"
 					(reference "#PWR055")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 87.63 168.91 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "21e3f4d7-b2e3-4dc3-bc69-bf7587203290")
+		(property "Reference" "R27"
+			(at 87.63 162.56 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 87.63 165.1 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 87.63 170.688 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 87.63 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 87.63 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "d7467663-6388-47b9-970b-b256b250b102")
+		)
+		(pin "1"
+			(uuid "858970b1-4b1c-4e52-971a-9ed5db8e5859")
+		)
+		(instances
+			(project ""
+				(path "/7da3b652-85ac-4caa-8d8d-9cad461e9c85/9e6d6147-95e6-4ef0-a238-5628802dd2a2"
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -5093,7 +5305,7 @@
 	)
 	(symbol
 		(lib_id "power:+5VA")
-		(at 86.36 166.37 0)
+		(at 81.28 166.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5102,7 +5314,7 @@
 		(fields_autoplaced yes)
 		(uuid "884be3a1-7718-4287-8282-c2c266a41b58")
 		(property "Reference" "#PWR062"
-			(at 86.36 170.18 0)
+			(at 81.28 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5111,7 +5323,7 @@
 			)
 		)
 		(property "Value" "+5VA"
-			(at 86.36 161.29 0)
+			(at 81.28 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5119,7 +5331,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 86.36 166.37 0)
+			(at 81.28 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5128,7 +5340,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 86.36 166.37 0)
+			(at 81.28 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5137,7 +5349,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5VA\""
-			(at 86.36 166.37 0)
+			(at 81.28 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5152,6 +5364,74 @@
 			(project "precise_ammeter"
 				(path "/7da3b652-85ac-4caa-8d8d-9cad461e9c85/9e6d6147-95e6-4ef0-a238-5628802dd2a2"
 					(reference "#PWR062")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 74.93 179.07 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8fcfc173-bd65-4a71-ad8d-63f236c0dae8")
+		(property "Reference" "R26"
+			(at 74.93 172.72 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 74.93 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 74.93 180.848 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 74.93 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 74.93 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "faa50548-e540-4dec-a002-825909dcf904")
+		)
+		(pin "1"
+			(uuid "c10f9b10-1a38-453e-bfdf-85a86140158d")
+		)
+		(instances
+			(project ""
+				(path "/7da3b652-85ac-4caa-8d8d-9cad461e9c85/9e6d6147-95e6-4ef0-a238-5628802dd2a2"
+					(reference "R26")
 					(unit 1)
 				)
 			)
@@ -6007,7 +6287,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 77.47 173.99 0)
+		(at 67.31 173.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6016,7 +6296,7 @@
 		(fields_autoplaced yes)
 		(uuid "f5ec7e1b-25e8-4b6e-a60e-22c7c42adcf8")
 		(property "Reference" "#PWR063"
-			(at 77.47 177.8 0)
+			(at 67.31 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6025,7 +6305,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 77.47 168.91 0)
+			(at 67.31 168.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6033,7 +6313,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 77.47 173.99 0)
+			(at 67.31 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6042,7 +6322,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 77.47 173.99 0)
+			(at 67.31 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6051,7 +6331,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 77.47 173.99 0)
+			(at 67.31 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
