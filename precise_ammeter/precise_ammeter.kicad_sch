@@ -151,7 +151,7 @@
 	)
 	(text_box "Subsheet provides:\n- USB lines for MCU (no +5V USB lines connected, only D+/-)\n- +3V3, +5VA and -5VA for MCU and analog section\n- Status LEDs"
 		(exclude_from_sim no)
-		(at 157.48 48.26 0)
+		(at 158.115 44.45 0)
 		(size 55.88 15.24)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -181,6 +181,36 @@
 	)
 	(wire
 		(pts
+			(xy 151.13 80.01) (xy 165.1 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7372b12d-475f-4c8a-9f23-eff3bd987620")
+	)
+	(wire
+		(pts
+			(xy 99.06 95.25) (xy 113.03 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b14b85f-7242-4654-a113-a0f0ea838bcd")
+	)
+	(wire
+		(pts
+			(xy 99.06 102.87) (xy 113.03 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b346d485-12a5-4b79-a10b-0b2ce4de246d")
+	)
+	(wire
+		(pts
 			(xy 45.72 104.14) (xy 55.88 104.14)
 		)
 		(stroke
@@ -188,6 +218,16 @@
 			(type default)
 		)
 		(uuid "e3f25c45-c3c3-4914-b8e9-5ffc5509d361")
+	)
+	(wire
+		(pts
+			(xy 151.13 74.93) (xy 165.1 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fdac47f8-0e4c-4aba-9e5d-bb23299bdb3b")
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x01_Socket")
@@ -320,7 +360,7 @@
 		)
 	)
 	(sheet
-		(at 234.315 50.165)
+		(at 113.03 67.945)
 		(size 38.1 55.88)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -336,7 +376,7 @@
 		)
 		(uuid "375ae359-eeb3-4ece-be83-a6d2731656da")
 		(property "Sheetname" "MCU"
-			(at 234.315 49.4534 0)
+			(at 113.03 67.2334 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -345,12 +385,52 @@
 			)
 		)
 		(property "Sheetfile" "MCU.kicad_sch"
-			(at 234.315 106.6296 0)
+			(at 113.03 124.4096 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "Analog_in" input
+			(at 113.03 95.25 180)
+			(uuid "69ebc526-a992-46ab-8082-3304bd198fa6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Stage_1_in" input
+			(at 113.03 102.87 180)
+			(uuid "8d1fc95c-4d20-441e-a1eb-5668cb9157b1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "USB_D_N" bidirectional
+			(at 151.13 74.93 0)
+			(uuid "f6558bae-18a0-439c-b3c1-6bdaf4810802")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "USB_D_P" bidirectional
+			(at 151.13 80.01 0)
+			(uuid "bead68f2-5671-4739-b531-5d7a2aceb2c0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -396,23 +476,23 @@
 			)
 		)
 		(pin "USB_D_N" input
-			(at 203.2 74.93 0)
+			(at 165.1 74.93 180)
 			(uuid "3c2fd892-544d-4b77-8567-ea2a7b35c109")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(pin "USB_D_P" input
-			(at 203.2 80.01 0)
+			(at 165.1 80.01 180)
 			(uuid "36a04697-e2f4-4ebf-8b19-44f6c7cad335")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(instances
