@@ -149,7 +149,7 @@
 		)
 		(uuid "9f563d1e-8188-4a7f-81b3-8afa1bec5582")
 	)
-	(text_box "Subsheet provides:\n- USB lines for MCU (no +5V USB lines connected, only D+/-)\n- +3V3, +5VA and -5VA for MCU and analog section\n- Status LEDs"
+	(text_box "Subsheet provides:\n- USB lines for MCU\n- +3V3, +5VA and -5VA for MCU and analog section\n- Status LEDs"
 		(exclude_from_sim no)
 		(at 158.115 44.45 0)
 		(size 55.88 15.24)

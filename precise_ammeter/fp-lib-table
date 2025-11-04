@@ -1,0 +1,8 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "libs")(type "KiCad")(uri "${KIPRJMOD}/libs")(options "")(descr ""))
+  (lib (name "USB4110GFA")(type "KiCad")(uri "${KIPRJMOD}/libs/USB4110GFA")(options "")(descr ""))
+  (lib (name "INA137UA")(type "KiCad")(uri "${KIPRJMOD}/libs/INA137UA")(options "")(descr ""))
+  (lib (name "footprints")(type "KiCad")(uri "${KIPRJMOD}/libs/TPS7A2433DBVR/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "footprints2")(type "KiCad")(uri "${KIPRJMOD}/libs/TPS7A2450DBVR/KiCADv6/footprints.pretty")(options "")(descr ""))
+)
