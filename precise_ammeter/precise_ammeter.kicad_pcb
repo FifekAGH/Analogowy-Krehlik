@@ -16898,7 +16898,7 @@
 		(property "Reference" "C8"
 			(at 0 -1.68 90)
 			(layer "F.SilkS")
-			(uuid "9eeccc57-eb08-4c53-b2d0-242763db56e9")
+			(uuid "cbf98964-9794-449f-9516-759907314cf7")
 			(effects
 				(font
 					(size 1 1)
@@ -16909,7 +16909,7 @@
 		(property "Value" "1u"
 			(at 0 1.68 90)
 			(layer "F.Fab")
-			(uuid "5ae65771-3b5b-4519-8ca6-1b7577259196")
+			(uuid "b2e6e05f-2caf-44c0-87b2-7b36d6653314")
 			(effects
 				(font
 					(size 1 1)
@@ -16922,7 +16922,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a5e72399-4032-4516-9c1d-b605a40fb4ba")
+			(uuid "d4b88393-0f78-4cc7-b24e-878aaa36d055")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16935,7 +16935,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "fcf6f545-ee9e-4766-a33e-f9b3b11e786e")
+			(uuid "a6071145-b26e-4c18-ac69-210c2a85a091")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24724,6 +24724,46 @@
 		(layer "Edge.Cuts")
 		(uuid "49bd4e16-a57c-4a3b-8338-3a72962ad139")
 	)
+	(gr_text_box "WYŚWIETLACZ"
+		(start 200.152 83.566)
+		(end 227.33 91.948)
+		(margins 1.0025 1.0025 1.0025 1.0025)
+		(layer "F.Cu")
+		(uuid "700386af-35e8-4cf6-aa82-cfddad5961d4")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(border yes)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+	)
+	(gr_text_box "TU ANIME DZIEWCZYNKA"
+		(start 143.256 129.032)
+		(end 164.846 143.51)
+		(margins 1.0025 1.0025 1.0025 1.0025)
+		(layer "F.Cu")
+		(uuid "d9497e0a-5073-4b4b-ae2b-f4f9804d21d0")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(border yes)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+	)
 	(segment
 		(start 202.184 119.634)
 		(end 202.184 127)
@@ -27787,6 +27827,54 @@
 		(layer "B.Cu")
 		(net 35)
 		(uuid "b21ddf46-1449-464a-9f1f-004154591f02")
+	)
+	(segment
+		(start 213.872 114.55)
+		(end 213.872 110.1375)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 36)
+		(uuid "86a679f6-1b88-4314-bb08-c96f672243b4")
+	)
+	(segment
+		(start 210.312 118.11)
+		(end 213.872 114.55)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 36)
+		(uuid "b5c4b37c-6b67-477e-866c-b22639495082")
+	)
+	(segment
+		(start 210.312 121.666)
+		(end 210.312 118.11)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 36)
+		(uuid "b63afd85-8d7e-4b96-86ab-ca8f8426c446")
+	)
+	(via
+		(at 210.312 121.666)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(net 36)
+		(uuid "71bde733-7f78-4790-873c-7fcb151b7f69")
+	)
+	(segment
+		(start 208.534 126.492)
+		(end 208.534 123.444)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 36)
+		(uuid "1617422c-8406-4058-941a-d737eb62c9d0")
+	)
+	(segment
+		(start 208.534 123.444)
+		(end 210.312 121.666)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 36)
+		(uuid "9752519d-d554-43b9-a3f0-59becfaf0220")
 	)
 	(segment
 		(start 163.6325 113.7355)
