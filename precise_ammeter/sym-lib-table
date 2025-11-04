@@ -3,4 +3,6 @@
   (lib (name "INA121U")(type "KiCad")(uri "${KIPRJMOD}/libs/INA121U/INA121U.kicad_sym")(options "")(descr ""))
   (lib (name "TLV9001IDCKR")(type "KiCad")(uri "${KIPRJMOD}/libs/TLV9001IDCKR/TLV9001IDCKR.kicad_sym")(options "")(descr ""))
   (lib (name "INA137UA")(type "KiCad")(uri "${KIPRJMOD}/libs/INA137UA/INA137UA.kicad_sym")(options "")(descr ""))
+  (lib (name "SSD1306_OLED-0.91-128x32")(type "Legacy")(uri "${KIPRJMOD}/libs/KiCad-SSD1306_OLED-0.91-128x32-master/KiCad-SSD1306_OLED-0.91-128x32-master/SSD1306_OLED-0.91-128x32.lib")(options "")(descr ""))
+  (lib (name "DM-OLED096-636")(type "KiCad")(uri "${KIPRJMOD}/libs/DM-OLED096-636/DM-OLED096-636.kicad_sym")(options "")(descr ""))
 )
