@@ -7232,7 +7232,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_AMASS:AMASS_XT30UPB-M_1x02_P5.0mm_Vertical"
+		(property "Footprint" "xt30:AMASS_XT30UPB-M_1x02_P5.0mm_Vertical"
 			(at 33.02 64.77 0)
 			(effects
 				(font

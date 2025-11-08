@@ -129,6 +129,16 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "Banana connectors"
+		(exclude_from_sim no)
+		(at 29.972 98.044 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "22c1d1d6-fdc4-4fed-8250-964beb326735")
+	)
 	(text_box "Required supply voltages for the fronend:\n\n+5VA\n-5VA"
 		(exclude_from_sim no)
 		(at 57.15 67.945 0)
