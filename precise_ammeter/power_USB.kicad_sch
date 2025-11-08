@@ -4587,7 +4587,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TPS7A2450DBVR:SOT_50DBVR"
+		(property "Footprint" "TPS7A2433DBVR:SOT23_DBV_TEX"
 			(at 194.818 97.536 0)
 			(effects
 				(font
@@ -5007,7 +5007,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TPS7A2450DBVR:SOT_50DBVR"
+		(property "Footprint" "TPS7A2433DBVR:SOT23_DBV_TEX"
 			(at 225.298 31.496 0)
 			(effects
 				(font
