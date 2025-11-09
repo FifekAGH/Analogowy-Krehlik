@@ -4613,7 +4613,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOT23_DBV_TEX"
+		(property "Footprint" "TPS7A2433DBVR:SOT23_DBV_TEX"
 			(at 74.93 45.72 0)
 			(effects
 				(font
