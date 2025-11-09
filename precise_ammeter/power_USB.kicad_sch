@@ -2700,12 +2700,6 @@
 		(uuid "65a0c2e9-005f-4b32-b891-8726ee5b210a")
 	)
 	(junction
-		(at 257.81 115.57)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "66d2e9bd-e896-4a81-864f-78f283746494")
-	)
-	(junction
 		(at 81.28 127)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2716,12 +2710,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7fbcbd1d-0f62-42b8-abb9-64a4cdebd8a4")
-	)
-	(junction
-		(at 257.81 125.73)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "902c48c5-c2d4-470c-839e-2b8fbf6cc65d")
 	)
 	(junction
 		(at 100.33 181.61)
@@ -2869,16 +2857,6 @@
 	)
 	(wire
 		(pts
-			(xy 270.51 115.57) (xy 257.81 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "068828a4-63d2-4c21-a5cc-cc8b4ddbb60f")
-	)
-	(wire
-		(pts
 			(xy 85.09 114.3) (xy 81.28 114.3)
 		)
 		(stroke
@@ -2946,16 +2924,6 @@
 			(type default)
 		)
 		(uuid "17e4ef6e-ad13-49fb-be7f-0180ef5c31ff")
-	)
-	(wire
-		(pts
-			(xy 270.51 116.84) (xy 270.51 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "19fbd0ad-176d-4880-82df-cb5c2fd4d8bb")
 	)
 	(wire
 		(pts
@@ -3599,16 +3567,6 @@
 	)
 	(wire
 		(pts
-			(xy 270.51 124.46) (xy 270.51 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b255db31-2afb-4e28-9fea-76728c9f6849")
-	)
-	(wire
-		(pts
 			(xy 81.28 116.84) (xy 81.28 121.92)
 		)
 		(stroke
@@ -3626,16 +3584,6 @@
 			(type default)
 		)
 		(uuid "b6a7a79d-91de-45bc-87b1-db0d8b6d38a5")
-	)
-	(wire
-		(pts
-			(xy 257.81 125.73) (xy 270.51 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b8c0d062-04c9-4b66-8eae-20db6dda5a5a")
 	)
 	(wire
 		(pts
@@ -6694,85 +6642,6 @@
 			(project "precise_ammeter"
 				(path "/7da3b652-85ac-4caa-8d8d-9cad461e9c85/9e6d6147-95e6-4ef0-a238-5628802dd2a2"
 					(reference "#PWR084")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 270.51 120.65 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cfb37eac-07ba-4238-814f-bff4dd78b8d3")
-		(property "Reference" "C39"
-			(at 274.32 118.4909 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10u"
-			(at 274.32 121.0309 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:CP_Elec_4x5.4"
-			(at 271.4752 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 270.51 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 270.51 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Product link" "EDH106M025S9BAA"
-			(at 270.51 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "c236727e-2261-4b39-966e-804c1a0397e7")
-		)
-		(pin "1"
-			(uuid "f7bcd5b6-d550-4efb-a829-faf9ab72c3c3")
-		)
-		(instances
-			(project "precise_ammeter"
-				(path "/7da3b652-85ac-4caa-8d8d-9cad461e9c85/9e6d6147-95e6-4ef0-a238-5628802dd2a2"
-					(reference "C39")
 					(unit 1)
 				)
 			)

@@ -239,6 +239,26 @@
 		)
 		(uuid "fdac47f8-0e4c-4aba-9e5d-bb23299bdb3b")
 	)
+	(label "Stage_IO"
+		(at 102.87 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "73643d80-87d3-4d66-9f04-015abb976d67")
+	)
+	(label "Analog_IO"
+		(at 101.6 95.25 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b0235617-91ed-48f3-85e1-26617557da6c")
+	)
 	(symbol
 		(lib_id "Connector:Conn_01x01_Socket")
 		(at 40.64 93.98 180)
