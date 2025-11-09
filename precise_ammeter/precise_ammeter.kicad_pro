@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.25
         }
       },
       "diff_pair_dimensions": [
@@ -58,7 +58,16 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "hole_clearance|237537500|70310000|83c0bca7-6fd5-48f1-92bb-b9c82e8f9229|76ba18e6-fb08-4783-bbf5-cbfdf82fb4dc",
+          ""
+        ],
+        [
+          "hole_clearance|237537500|76110000|2abb436c-351a-436a-b740-62ac23382d30|5c4588f5-9ea4-4032-9c30-0ac3b797e115",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -124,20 +133,20 @@
       "rules": {
         "max_error": 0.005,
         "min_clearance": 0.2,
-        "min_connection": 0.3,
+        "min_connection": 0.2,
         "min_copper_edge_clearance": 0.5,
         "min_groove_width": 0.0,
-        "min_hole_clearance": 0.3,
-        "min_hole_to_hole": 0.3,
+        "min_hole_clearance": 0.2,
+        "min_hole_to_hole": 0.2,
         "min_microvia_diameter": 0.0,
         "min_microvia_drill": 0.0,
-        "min_resolved_spokes": 3,
+        "min_resolved_spokes": 1,
         "min_silk_clearance": 0.2,
         "min_text_height": 1.2,
         "min_text_thickness": 0.2,
         "min_through_hole_diameter": 0.3,
         "min_track_width": 0.2,
-        "min_via_annular_width": 0.2,
+        "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
         "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
@@ -191,7 +200,8 @@
         0.2,
         0.3,
         0.5,
-        0.8
+        0.8,
+        1.0
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -495,6 +505,16 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "clearance": 0.2,
+        "name": "+3V3",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
       }
     ],
     "meta": {
