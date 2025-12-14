@@ -1,0 +1,1 @@
+project(precise_ammeter)
