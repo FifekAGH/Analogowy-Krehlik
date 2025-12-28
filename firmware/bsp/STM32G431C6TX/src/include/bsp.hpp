@@ -1,13 +1,15 @@
 #ifndef BSP_HPP_
 #define BSP_HPP_
 
+#include <cstdint>
+
 namespace bsp {
 
 void init();
 
-void toogleLed();
+int64_t getUptimeMs();
 
-void setLed(bool on);
+void delayMs(int64_t ms);
 
 } // namespace bsp
 

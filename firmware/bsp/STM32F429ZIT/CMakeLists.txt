@@ -4,8 +4,7 @@ set(MX_Include_Dirs
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Include
-    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Include
-)
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Include)
 
 # STM32CubeMX generated application sources
 set(MX_Application_Src
@@ -17,8 +16,7 @@ set(MX_Application_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/sysmem.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/syscalls.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/startup_stm32f429xx.s
-)
+    ${CMAKE_CURRENT_SOURCE_DIR}/startup_stm32f429xx.s)
 
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
@@ -43,17 +41,19 @@ set(STM32_Drivers_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c
 )
 
-set(MX_LINK_LIBS 
-    STM32_Drivers
-    ${TOOLCHAIN_LINK_LIBRARIES}
-)
+set(MX_LINK_LIBS STM32_Drivers ${TOOLCHAIN_LINK_LIBRARIES})
 
-add_library(bsp OBJECT src/bsp.cpp ${MX_Application_Src} ${STM32_Drivers_Src})
+add_library(
+  bsp OBJECT src/bsp.cpp src/bsp_i2c_display.cpp src/bsp_led.cpp
+             src/bsp_adc.cpp ${MX_Application_Src} ${STM32_Drivers_Src})
 
-target_include_directories(bsp PUBLIC ./src/include 
-                               PRIVATE ${MX_Include_Dirs})
+target_include_directories(
+  bsp
+  PUBLIC ./src/include
+  PRIVATE ${MX_Include_Dirs})
 
-target_compile_definitions(bsp PUBLIC USE_HAL_DRIVER STM32F429xx $<$<CONFIG:Debug>:DEBUG>)
+target_compile_definitions(bsp PUBLIC USE_HAL_DRIVER STM32F429xx
+                                      $<$<CONFIG:Debug>:DEBUG>)
 
 set(JLINK_RTT_USE_SYSCALLS ON)
 

@@ -6,4 +6,5 @@ include(FetchContent)
 include(cmake/requirements.cmake)
 
 add_subdirectory(bsp/${BOARD_NAME})
+add_subdirectory(drivers)
 add_subdirectory(src)
