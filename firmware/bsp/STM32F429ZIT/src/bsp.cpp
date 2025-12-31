@@ -4,6 +4,7 @@
 #include "gpio.h"
 #include "i2c.h"
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_adc.h"
 
 extern "C" void SystemClock_Config(void);
 

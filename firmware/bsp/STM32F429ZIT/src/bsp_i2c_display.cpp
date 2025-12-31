@@ -4,12 +4,12 @@
 
 namespace bsp::displayBus {
 
-void write(uint8_t address, const uint8_t *data, uint16_t length) {
-  HAL_I2C_Mem_Write(&hi2c3, address << 1, 0x00, I2C_MEMADD_SIZE_8BIT, (uint8_t *)data, length, HAL_MAX_DELAY);
+void write(uint8_t address, uint8_t memoryAddress, const uint8_t *data, uint16_t length) {
+  HAL_I2C_Mem_Write(&hi2c3, address << 1, memoryAddress, I2C_MEMADD_SIZE_8BIT, (uint8_t *)data, length, HAL_MAX_DELAY);
 }
 
-void read(uint8_t address, uint8_t *data, uint16_t length) {
-  HAL_I2C_Mem_Read(&hi2c3, address << 1, 0x00, I2C_MEMADD_SIZE_8BIT, data, length, HAL_MAX_DELAY);
+void read(uint8_t address, uint8_t memoryAddress, uint8_t *data, uint16_t length) {
+  HAL_I2C_Mem_Read(&hi2c3, address << 1, memoryAddress, I2C_MEMADD_SIZE_8BIT, data, length, HAL_MAX_DELAY);
 }
 
 } // namespace bsp::displayBus

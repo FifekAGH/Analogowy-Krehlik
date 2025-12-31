@@ -1,15 +1,14 @@
 #ifndef SSD1306_DISPLAY_PORT_HPP_
 #define SSD1306_DISPLAY_PORT_HPP_
 
-#include "bsp_display_bus.hpp"
-
+#include <cstddef>
 #include <cstdint>
 
 namespace ssd1306 {
 
-void writeCommand(uint8_t command);
+void WriteCommand(uint8_t byte);
 
-void writeData(uint8_t *data, uint16_t size);
+void WriteData(uint8_t *buffer, size_t buff_size);
 
 } // namespace ssd1306
 

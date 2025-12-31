@@ -1,4 +1,4 @@
-add_executable(precise_ammeter main.cpp display.cpp)
+add_executable(precise_ammeter main.cpp gui.cpp)
 
 target_include_directories(precise_ammeter PRIVATE ./include)
 

@@ -5,9 +5,9 @@
 
 namespace bsp::displayBus {
 
-void write(uint8_t address, const uint8_t *data, uint16_t length);
+void write(uint8_t address, uint8_t memoryAddress, const uint8_t *data, uint16_t length);
 
-void read(uint8_t address, uint8_t *data, uint16_t length);
+void read(uint8_t address, uint8_t memoryAddress, uint8_t *data, uint16_t length);
 
 } // namespace bsp::displayBus
 
