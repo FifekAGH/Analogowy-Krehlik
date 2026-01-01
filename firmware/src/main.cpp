@@ -6,14 +6,10 @@
 #include <cstdlib>
 
 enum {
-  GUI_UPDATE_INTERVAL_MS = 100,
+  GUI_UPDATE_INTERVAL_MS = 20,
 };
 
 namespace {
-
-volatile bool adcConversionComplete = false;
-volatile uint32_t rawValueChannel0 = 0;
-volatile uint32_t rawValueChannel1 = 0;
 
 /**
  * Convert raw ADC reading to current in nA
@@ -36,15 +32,6 @@ float convertRawToCurrent(uint32_t rawValue) {
   return current * 1e9f;                     // convert to nA
 }
 
-void onConversionCompleteISR(uint32_t *values, size_t length) {
-  if (1 > length) {
-    return;
-  }
-
-  rawValueChannel0 = values[0];
-  adcConversionComplete = true;
-}
-
 } // namespace
 
 int main(void) {
@@ -52,16 +39,12 @@ int main(void) {
   gui::init();
 
   gui::showCredits();
-  bsp::adc::setOnConversionCompleteISR(onConversionCompleteISR);
-  bsp::adc::requestConversion();
   while (true) {
-    if (adcConversionComplete) {
-      adcConversionComplete = false;
-      float current = current + convertRawToCurrent(rawValueChannel0);
-      gui::setCurrent(current);
-      gui::refresh();
-      bsp::led::toggle();
-      bsp::adc::requestConversion();
-    }
+    bsp::delayMs(GUI_UPDATE_INTERVAL_MS);
+    uint32_t rawAdcValue = bsp::adc::readChannelPolling(1);
+    float current = convertRawToCurrent(rawAdcValue);
+    gui::setCurrent(current);
+    gui::refresh();
+    bsp::led::toggle();
   }
 }

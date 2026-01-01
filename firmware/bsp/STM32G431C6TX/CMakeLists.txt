@@ -24,6 +24,9 @@ set(MX_Application_Src
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/system_stm32g4xx.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_utils.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_exti.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_gpio.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.c
@@ -52,12 +55,14 @@ set(MX_LINK_LIBS
     ${TOOLCHAIN_LINK_LIBRARIES}
 )
 
-add_library(bsp OBJECT src/bsp.cpp ${MX_Application_Src} ${STM32_Drivers_Src})
+add_library(
+  bsp OBJECT src/bsp.cpp src/bsp_i2c_display.cpp src/bsp_led.cpp
+             src/bsp_adc.cpp ${MX_Application_Src} ${STM32_Drivers_Src})
 
 target_include_directories(bsp PUBLIC ./src/include 
                                PRIVATE ${MX_Include_Dirs})
 
-target_compile_definitions(bsp PUBLIC USE_HAL_DRIVER STM32G431xx $<$<CONFIG:Debug>:DEBUG>)
+target_compile_definitions(bsp PUBLIC USE_FULL_LL_DRIVER USE_HAL_DRIVER STM32G431xx $<$<CONFIG:Debug>:DEBUG>)
 
 
 set(JLINK_RTT_USE_SYSCALLS ON)
