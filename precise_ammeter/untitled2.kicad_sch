@@ -3915,7 +3915,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TBD"
+		(property "Value" "1u"
 			(at 185.42 109.2262 0)
 			(effects
 				(font
@@ -4767,7 +4767,7 @@
 				)
 			)
 		)
-		(property "Value" "TBD"
+		(property "Value" "22k"
 			(at 172.72 99.06 90)
 			(effects
 				(font
@@ -4978,7 +4978,7 @@
 				)
 			)
 		)
-		(property "Value" "TBD"
+		(property "Value" "47k"
 			(at 214.63 125.73 90)
 			(effects
 				(font
@@ -5989,7 +5989,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "TBD"
+		(property "Value" "15k"
 			(at 201.93 132.0799 0)
 			(effects
 				(font
