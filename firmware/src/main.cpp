@@ -21,15 +21,14 @@ namespace {
  * @param rawValue Raw ADC reading.
  * @return Current in nA.
  */
-float convertRawToCurrent(uint32_t rawValue) {
-  float gain = 10000.0f;
-  float maxAdcReading = 65535.0f;
-  float referenceVoltage = 3.3f;
-  float shuntResistance = 1e3f;
+double convertRawToCurrent(uint32_t rawValue) {
+  double gain = 683.94f;
+  double maxAdcReading = 65535.0;
+  double referenceVoltage = 3.3;
+  double shuntResistance = 1e4;
 
-  float voltage = (static_cast<float>(rawValue) / maxAdcReading) * (referenceVoltage / gain);
-  float current = voltage / shuntResistance; // in Amperes
-  return current * 1e9f;                     // convert to nA
+  double voltage = (static_cast<double>(rawValue) / maxAdcReading) * (referenceVoltage / gain);
+  return (voltage * 1e9) / shuntResistance; // in nA
 }
 
 } // namespace
@@ -39,11 +38,21 @@ int main(void) {
   gui::init();
 
   gui::showCredits();
+
+  bool isCalibrated = bsp::adc::calibrate();
+  if (!isCalibrated) {
+    bsp::led::toggle();
+    bsp::delayMs(5 * 1000);
+    bsp::reset();
+  }
+
   while (true) {
     bsp::delayMs(GUI_UPDATE_INTERVAL_MS);
     uint32_t rawAdcValue = bsp::adc::readChannelPolling(1);
-    float current = convertRawToCurrent(rawAdcValue);
+    double current = convertRawToCurrent(rawAdcValue);
     gui::setCurrent(current);
+    // double voltage = (static_cast<double>(rawAdcValue) / 65535.0) * 3.3;
+    // gui::setVoltage(voltage);
     gui::refresh();
     bsp::led::toggle();
   }

@@ -11,6 +11,8 @@ int64_t getUptimeMs();
 
 void delayMs(int64_t ms);
 
+void reset();
+
 } // namespace bsp
 
 #endif // BSP_HPP_

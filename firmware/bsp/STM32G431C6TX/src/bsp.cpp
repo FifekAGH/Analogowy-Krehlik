@@ -17,10 +17,13 @@ void init() {
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_I2C1_Init();
+  HAL_Delay(100);
 }
 
 int64_t getUptimeMs() { return HAL_GetTick(); }
 
 void delayMs(int64_t ms) { HAL_Delay(static_cast<uint32_t>(ms)); }
+
+void reset() { NVIC_SystemReset(); }
 
 } // namespace bsp

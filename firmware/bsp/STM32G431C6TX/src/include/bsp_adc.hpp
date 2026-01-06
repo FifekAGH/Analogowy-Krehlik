@@ -10,6 +10,13 @@ namespace bsp {
 namespace adc {
 
 /**
+ * Calibrate the ADC.
+ *
+ * @return true if calibration was successful, false otherwise.
+ */
+bool calibrate(void);
+
+/**
  * Read ADC value using polling method.
  *
  * @param channel ADC channel to read from.
