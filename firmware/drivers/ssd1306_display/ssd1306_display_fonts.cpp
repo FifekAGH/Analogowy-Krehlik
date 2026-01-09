@@ -4,8 +4,6 @@ namespace ssd1306 {
 
 #define SSD1306_INCLUDE_FONT_16x24
 #define SSD1306_INCLUDE_FONT_16x15
-#define SSD1306_INCLUDE_FONT_7x10
-#define SSD1306_INCLUDE_FONT_6x8
 
 #ifdef SSD1306_INCLUDE_FONT_7x10
 static const uint16_t Font7x10[] = {

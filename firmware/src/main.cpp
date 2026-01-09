@@ -5,11 +5,17 @@
 #include <cstdint>
 #include <cstdlib>
 
-enum {
-  GUI_UPDATE_INTERVAL_MS = 20,
-};
-
 namespace {
+
+volatile double rawAdcValue = 0;
+
+double filterAdc(uint32_t newValue) {
+  double value = static_cast<double>(newValue);
+  static double filteredValue = 0.0f;
+  const double alpha = 0.01;
+  filteredValue = alpha * value + (1 - alpha) * filteredValue;
+  return filteredValue;
+}
 
 /**
  * Convert raw ADC reading to current in nA
@@ -21,14 +27,19 @@ namespace {
  * @param rawValue Raw ADC reading.
  * @return Current in nA.
  */
-double convertRawToCurrent(uint32_t rawValue) {
-  double gain = 683.94f;
-  double maxAdcReading = 65535.0;
-  double referenceVoltage = 3.3;
-  double shuntResistance = 1e4;
+double convertRawToCurrent(double rawValue) {
+  double gain = 672.0f;
+  double maxAdcReading = 65535.0f;
+  double referenceVoltage = 3.3f;
+  double shuntResistance = 1e4f;
+  double voltage = (rawValue / maxAdcReading) * (referenceVoltage / gain);
+  return (voltage * 1e9f) / shuntResistance; // in nA
+}
 
-  double voltage = (static_cast<double>(rawValue) / maxAdcReading) * (referenceVoltage / gain);
-  return (voltage * 1e9) / shuntResistance; // in nA
+double convertRawToVoltage(double rawValue) {
+  double maxAdcReading = 65535.0f;
+  double referenceVoltage = 3.3f;
+  return (rawValue / maxAdcReading) * referenceVoltage;
 }
 
 } // namespace
@@ -37,8 +48,6 @@ int main(void) {
   bsp::init();
   gui::init();
 
-  gui::showCredits();
-
   bool isCalibrated = bsp::adc::calibrate();
   if (!isCalibrated) {
     bsp::led::toggle();
@@ -46,13 +55,15 @@ int main(void) {
     bsp::reset();
   }
 
+  bsp::adc::readChannel(1, [](uint32_t value) { rawAdcValue = filterAdc(value); });
+
   while (true) {
-    bsp::delayMs(GUI_UPDATE_INTERVAL_MS);
-    uint32_t rawAdcValue = bsp::adc::readChannelPolling(1);
+    double voltage = convertRawToVoltage(rawAdcValue);
+    gui::setVoltage(voltage);
+
     double current = convertRawToCurrent(rawAdcValue);
     gui::setCurrent(current);
-    // double voltage = (static_cast<double>(rawAdcValue) / 65535.0) * 3.3;
-    // gui::setVoltage(voltage);
+
     gui::refresh();
     bsp::led::toggle();
   }

@@ -11,6 +11,15 @@ enum {
   ADC_CHANNEL_COUNT = 2,
 };
 
+volatile bsp::adc::OnConversion onConversionComplete = nullptr;
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
+  uint32_t value = HAL_ADC_GetValue(&hadc1);
+  if (onConversionComplete) {
+    onConversionComplete(value);
+  }
+}
+
 namespace {
 uint32_t getChannel(uint8_t channel) {
   switch (channel) {
@@ -40,6 +49,11 @@ uint32_t readChannelPolling(uint8_t channel) {
     return HAL_ADC_GetValue(&hadc1);
   }
   return 0;
+}
+
+void readChannel(uint8_t channel, OnConversion callback) {
+  onConversionComplete = callback;
+  HAL_ADC_Start_IT(&hadc1);
 }
 
 }; // namespace bsp::adc

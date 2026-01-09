@@ -9,6 +9,8 @@ namespace bsp {
 
 namespace adc {
 
+typedef void (*OnConversion)(uint32_t value);
+
 /**
  * Calibrate the ADC.
  *
@@ -23,6 +25,8 @@ bool calibrate(void);
  * @return Raw ADC value.
  */
 uint32_t readChannelPolling(uint8_t channel);
+
+void readChannel(uint8_t channel, OnConversion callback);
 
 } // namespace adc
 
