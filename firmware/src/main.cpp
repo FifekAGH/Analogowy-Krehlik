@@ -7,51 +7,80 @@
 namespace {
 
 typedef struct {
-  float b0, b1, b2;
-  float a1, a2;
-  float z1, z2;
-} Biquad;
+  float alpha;
+  float z0;
+  float z1;
+} SecondOrderEma;
 
-float offset = 0;
-float rawAdcValue = 0;
-Biquad biquad;
+SecondOrderEma ema;
 
-void BiquadInit(Biquad *biquad, float b0, float b1, float b2, float a1, float a2) {
-  biquad->b0 = b0;
-  biquad->b1 = b1;
-  biquad->b2 = b2;
-  biquad->a1 = a1;
-  biquad->a2 = a2;
-  biquad->z1 = 0;
-  biquad->z2 = 0;
-}
+volatile float rawAdcValue = 0;
+volatile float lastAdcValue = 0;
+float offset = 714.93823728f;
 
-float BiquadProcess(Biquad *biquad, float in) {
-  float out = biquad->b0 * in + biquad->z1;
-  biquad->z1 = biquad->b1 * in - biquad->a1 * out + biquad->z2;
-  biquad->z2 = biquad->b2 * in - biquad->a2 * out;
-  return out;
+/**
+ * Initialize the second-order EMA filter state.
+ *
+ * @param state The state of the second-order EMA filter.
+ * @param alpha The smoothing factor (0 < alpha < 1).
+ */
+void EmaFilterInit(SecondOrderEma &state, float alpha) {
+  state.alpha = alpha;
+  state.z0 = 0.0f;
+  state.z1 = 0.0f;
 }
 
 /**
- * Convert raw ADC reading to current in nA
+ * Apply a single-order EMA filter to the input value.
+ *
+ * @param previousEma The previous EMA value.
+ * @param newValue The new input value to be filtered.
+ * @param alpha The smoothing factor (0 < alpha < 1).
+ * @return The filtered output value.
+ */
+float EmaFilter(float previousEma, float newValue, float alpha) { return (alpha * newValue) + ((1.0f - alpha) * previousEma); }
+
+/**
+ * Apply a second-order EMA filter to the input value.
+ *
+ * @param state The state of the second-order EMA filter.
+ * @param newValue The new input value to be filtered.
+ * @return The filtered output value.
+ */
+float EmaFilterSecond(SecondOrderEma &state, float newValue) {
+  state.z0 = EmaFilter(state.z0, newValue, state.alpha);
+  state.z1 = EmaFilter(state.z1, state.z0, state.alpha);
+  return state.z1;
+}
+
+/**
+ * Convert raw ADC reading to current in µA
  *
  * Using the formula:
  * V_shunt = (Raw_ADC / Max_ADC_Reading) * (V_ref / Gain)
  * I = V_shunt / R_shunt
  *
  * @param rawValue Raw ADC reading.
- * @return Current in nA.
+ * @return Current in µA.
  */
 float convertRawToCurrent(float rawValue) {
-  float gain = 672.0f;
+  float gain = 537.2f;
   float maxAdcReading = 65535.0f;
   float referenceVoltage = 3.3f;
-  float shuntResistance = 1e4f;
+  float shuntResistance = 1.0f;
   float voltage = (rawValue / maxAdcReading) * (referenceVoltage / gain);
-  return (voltage * 1e9f) / shuntResistance; // in nA
+  return (voltage * 1e6f) / shuntResistance; // in µA
 }
 
+/**
+ * Convert raw ADC reading to voltage in V
+ *
+ * Using the formula:
+ * V_out = (Raw_ADC / Max_ADC_Reading) * V_ref
+ *
+ * @param rawValue Raw ADC reading.
+ * @return Voltage in V.
+ */
 float convertRawToVoltage(float rawValue) {
   float maxAdcReading = 65535.0f;
   float referenceVoltage = 3.3f;
@@ -71,19 +100,23 @@ int main(void) {
     bsp::reset();
   }
 
-  //  Create a Biquad low-pass filter with a cutoff frequency of 2 Hz and a sample rate of 12 kHz
-  BiquadInit(&biquad, 2.9830186087320927e-7f, 5.966037217464185e-7f, 2.9830186087320927e-7f, -1.9985806862052193f, 0.9985818794126626f);
-  bsp::adc::readChannel([](uint32_t value) { rawAdcValue = BiquadProcess(&biquad, static_cast<float>(value)); });
+  EmaFilterInit(ema, 0.005f);
+
+  bsp::adc::readChannel([](uint32_t value) {
+    float centered = static_cast<float>(value) - offset;
+    rawAdcValue = EmaFilterSecond(ema, centered);
+    lastAdcValue = rawAdcValue;
+  });
 
   while (true) {
     bsp::adc::disableInterrupts();
     float filteredAdcValue = rawAdcValue;
     bsp::adc::enableInterrupts();
 
-    float voltage = convertRawToVoltage(filteredAdcValue - offset);
+    float voltage = convertRawToVoltage(filteredAdcValue);
     gui::setVoltage(voltage);
 
-    float current = convertRawToCurrent(filteredAdcValue - offset);
+    float current = convertRawToCurrent(filteredAdcValue);
     gui::setCurrent(current);
 
     gui::refresh();

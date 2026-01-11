@@ -29,18 +29,18 @@ void setCurrent(float current) {
     current = 0;
   }
 
-  bool isInPicoAmps = (current <= 9.999);                   // 0 to ~10 nA
-  bool isInNanoAmps = (current > 9.999 && current < 999.9); // 10 nA to ~1 µA
-  bool isInMicroAmps = (current >= 999.9);                  // 1 µA and above
+  bool isInPicoAmps = (current <= 9.999);                   // 0 to ~10 µA
+  bool isInNanoAmps = (current > 9.999 && current < 999.9); // 10 µA to ~1 mA
+  bool isInMicroAmps = (current >= 999.9);                  // 1 mA and above
 
   ssd1306::SetCursor(0, 0);
 
   if (isInPicoAmps) {
-    std::snprintf(buffer, sizeof(buffer), "%0.4fnA", current);
+    std::snprintf(buffer, sizeof(buffer), "%0.4fuA", current);
   } else if (isInNanoAmps) {
-    std::snprintf(buffer, sizeof(buffer), "%0.2fnA", current);
+    std::snprintf(buffer, sizeof(buffer), "%0.2fuA", current);
   } else if (isInMicroAmps) {
-    std::snprintf(buffer, sizeof(buffer), "%0.3fuA", current / 1000.0f);
+    std::snprintf(buffer, sizeof(buffer), "%0.3fmA", current / 1000.0f);
   } else {
     std::snprintf(buffer, sizeof(buffer), "err");
   }
