@@ -20,20 +20,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
   }
 }
 
-namespace {
-uint32_t getChannel(uint8_t channel) {
-  switch (channel) {
-  case 0:
-    return ADC_CHANNEL_1;
-  case 1:
-    return ADC_CHANNEL_2;
-  default:
-    return ADC_CHANNEL_VREFINT;
-  };
-}
-
-} // namespace
-
 namespace bsp::adc {
 
 bool calibrate(void) {
@@ -43,7 +29,7 @@ bool calibrate(void) {
   return true;
 }
 
-uint32_t readChannelPolling(uint8_t channel) {
+uint32_t readChannelPolling() {
   HAL_ADC_Start(&hadc1);
   if (HAL_OK == HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY)) {
     return HAL_ADC_GetValue(&hadc1);
@@ -51,7 +37,11 @@ uint32_t readChannelPolling(uint8_t channel) {
   return 0;
 }
 
-void readChannel(uint8_t channel, OnConversion callback) {
+void disableInterrupts() { HAL_NVIC_DisableIRQ(ADC1_2_IRQn); }
+
+void enableInterrupts() { HAL_NVIC_EnableIRQ(ADC1_2_IRQn); }
+
+void readChannel(OnConversion callback) {
   onConversionComplete = callback;
   HAL_ADC_Start_IT(&hadc1);
 }

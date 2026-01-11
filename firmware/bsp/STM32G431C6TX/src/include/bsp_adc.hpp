@@ -24,9 +24,13 @@ bool calibrate(void);
  * @param channel ADC channel to read from.
  * @return Raw ADC value.
  */
-uint32_t readChannelPolling(uint8_t channel);
+uint32_t readChannelPolling();
 
-void readChannel(uint8_t channel, OnConversion callback);
+void disableInterrupts();
+
+void enableInterrupts();
+
+void readChannel(OnConversion callback);
 
 } // namespace adc
 

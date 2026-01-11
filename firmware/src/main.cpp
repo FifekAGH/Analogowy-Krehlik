@@ -1,26 +1,36 @@
+#include "SEGGER_RTT.h"
 #include "bsp.hpp"
 #include "bsp_adc.hpp"
 #include "bsp_led.hpp"
 #include "gui.hpp"
-#include <cstdint>
-#include <cstdlib>
 
 namespace {
 
-volatile float rawAdcValue = 0;
+typedef struct {
+  float b0, b1, b2;
+  float a1, a2;
+  float z1, z2;
+} Biquad;
 
-float filterAdc(uint32_t newValue) {
-  float x = static_cast<float>(newValue);
+float offset = 0;
+float rawAdcValue = 0;
+Biquad biquad;
 
-  static float y1 = 0.0f;
-  static float y2 = 0.0f;
+void BiquadInit(Biquad *biquad, float b0, float b1, float b2, float a1, float a2) {
+  biquad->b0 = b0;
+  biquad->b1 = b1;
+  biquad->b2 = b2;
+  biquad->a1 = a1;
+  biquad->a2 = a2;
+  biquad->z1 = 0;
+  biquad->z2 = 0;
+}
 
-  const float alpha = 0.001f;
-
-  y1 = alpha * x + (1.0f - alpha) * y1;
-  y2 = alpha * y1 + (1.0f - alpha) * y2;
-
-  return y2;
+float BiquadProcess(Biquad *biquad, float in) {
+  float out = biquad->b0 * in + biquad->z1;
+  biquad->z1 = biquad->b1 * in - biquad->a1 * out + biquad->z2;
+  biquad->z2 = biquad->b2 * in - biquad->a2 * out;
+  return out;
 }
 
 /**
@@ -61,13 +71,19 @@ int main(void) {
     bsp::reset();
   }
 
-  bsp::adc::readChannel(1, [](uint32_t value) { rawAdcValue = filterAdc(value); });
+  //  Create a Biquad low-pass filter with a cutoff frequency of 2 Hz and a sample rate of 12 kHz
+  BiquadInit(&biquad, 2.9830186087320927e-7f, 5.966037217464185e-7f, 2.9830186087320927e-7f, -1.9985806862052193f, 0.9985818794126626f);
+  bsp::adc::readChannel([](uint32_t value) { rawAdcValue = BiquadProcess(&biquad, static_cast<float>(value)); });
 
   while (true) {
-    float voltage = convertRawToVoltage(rawAdcValue);
+    bsp::adc::disableInterrupts();
+    float filteredAdcValue = rawAdcValue;
+    bsp::adc::enableInterrupts();
+
+    float voltage = convertRawToVoltage(filteredAdcValue - offset);
     gui::setVoltage(voltage);
 
-    float current = convertRawToCurrent(rawAdcValue);
+    float current = convertRawToCurrent(filteredAdcValue - offset);
     gui::setCurrent(current);
 
     gui::refresh();

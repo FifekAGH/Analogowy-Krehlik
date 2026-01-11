@@ -25,15 +25,22 @@ void showCredits(void) {
 }
 
 void setCurrent(float current) {
-  bool isInNanoAmps = (current > 9.999 && current < 99.9);
-  bool isInPicoAmps = (current <= 9.999);
+  if (current < 0) {
+    current = 0;
+  }
+
+  bool isInPicoAmps = (current <= 9.999);                   // 0 to ~10 nA
+  bool isInNanoAmps = (current > 9.999 && current < 999.9); // 10 nA to ~1 µA
+  bool isInMicroAmps = (current >= 999.9);                  // 1 µA and above
 
   ssd1306::SetCursor(0, 0);
 
   if (isInPicoAmps) {
     std::snprintf(buffer, sizeof(buffer), "%0.4fnA", current);
   } else if (isInNanoAmps) {
-    std::snprintf(buffer, sizeof(buffer), "%0.3fnA", current);
+    std::snprintf(buffer, sizeof(buffer), "%0.2fnA", current);
+  } else if (isInMicroAmps) {
+    std::snprintf(buffer, sizeof(buffer), "%0.3fuA", current / 1000.0f);
   } else {
     std::snprintf(buffer, sizeof(buffer), "err");
   }
@@ -42,6 +49,10 @@ void setCurrent(float current) {
 }
 
 void setVoltage(float voltage) {
+  if (voltage < 0) {
+    voltage = 0;
+  }
+
   ssd1306::SetCursor(0, 30);
   std::snprintf(buffer, sizeof(buffer), "%0.5fV", voltage);
   ssd1306::WriteString(buffer, ssd1306::Font_16x24, ssd1306::White);

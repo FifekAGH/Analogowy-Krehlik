@@ -13,7 +13,6 @@ set(MX_Application_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/gpio.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/adc.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/i2c.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/usb.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32g4xx_it.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32g4xx_hal_msp.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/sysmem.c
@@ -47,7 +46,6 @@ set(STM32_Drivers_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_i2c_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd_ex.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c
 )
 
 set(MX_LINK_LIBS 
@@ -66,6 +64,6 @@ target_compile_definitions(bsp PUBLIC USE_FULL_LL_DRIVER USE_HAL_DRIVER STM32G43
 
 
 set(JLINK_RTT_USE_SYSCALLS ON)
-
 FetchContent_MakeAvailable(jlink_rtt)
-target_link_libraries(bsp PRIVATE jlink_rtt)
+
+target_link_libraries(bsp PUBLIC jlink_rtt)
