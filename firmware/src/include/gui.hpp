@@ -7,9 +7,9 @@ void init(void);
 
 void showCredits(void);
 
-void setCurrent(double value);
+void setCurrent(float value);
 
-void setVoltage(double voltage);
+void setVoltage(float voltage);
 
 void refresh(void);
 

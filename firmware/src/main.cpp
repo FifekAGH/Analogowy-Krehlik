@@ -7,14 +7,20 @@
 
 namespace {
 
-volatile double rawAdcValue = 0;
+volatile float rawAdcValue = 0;
 
-double filterAdc(uint32_t newValue) {
-  double value = static_cast<double>(newValue);
-  static double filteredValue = 0.0f;
-  const double alpha = 0.01;
-  filteredValue = alpha * value + (1 - alpha) * filteredValue;
-  return filteredValue;
+float filterAdc(uint32_t newValue) {
+  float x = static_cast<float>(newValue);
+
+  static float y1 = 0.0f;
+  static float y2 = 0.0f;
+
+  const float alpha = 0.001f;
+
+  y1 = alpha * x + (1.0f - alpha) * y1;
+  y2 = alpha * y1 + (1.0f - alpha) * y2;
+
+  return y2;
 }
 
 /**
@@ -27,18 +33,18 @@ double filterAdc(uint32_t newValue) {
  * @param rawValue Raw ADC reading.
  * @return Current in nA.
  */
-double convertRawToCurrent(double rawValue) {
-  double gain = 672.0f;
-  double maxAdcReading = 65535.0f;
-  double referenceVoltage = 3.3f;
-  double shuntResistance = 1e4f;
-  double voltage = (rawValue / maxAdcReading) * (referenceVoltage / gain);
+float convertRawToCurrent(float rawValue) {
+  float gain = 672.0f;
+  float maxAdcReading = 65535.0f;
+  float referenceVoltage = 3.3f;
+  float shuntResistance = 1e4f;
+  float voltage = (rawValue / maxAdcReading) * (referenceVoltage / gain);
   return (voltage * 1e9f) / shuntResistance; // in nA
 }
 
-double convertRawToVoltage(double rawValue) {
-  double maxAdcReading = 65535.0f;
-  double referenceVoltage = 3.3f;
+float convertRawToVoltage(float rawValue) {
+  float maxAdcReading = 65535.0f;
+  float referenceVoltage = 3.3f;
   return (rawValue / maxAdcReading) * referenceVoltage;
 }
 
@@ -58,10 +64,10 @@ int main(void) {
   bsp::adc::readChannel(1, [](uint32_t value) { rawAdcValue = filterAdc(value); });
 
   while (true) {
-    double voltage = convertRawToVoltage(rawAdcValue);
+    float voltage = convertRawToVoltage(rawAdcValue);
     gui::setVoltage(voltage);
 
-    double current = convertRawToCurrent(rawAdcValue);
+    float current = convertRawToCurrent(rawAdcValue);
     gui::setCurrent(current);
 
     gui::refresh();

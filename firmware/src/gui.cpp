@@ -24,7 +24,7 @@ void showCredits(void) {
   bsp::delayMs(1000);
 }
 
-void setCurrent(double current) {
+void setCurrent(float current) {
   bool isInNanoAmps = (current > 9.999 && current < 99.9);
   bool isInPicoAmps = (current <= 9.999);
 
@@ -41,7 +41,7 @@ void setCurrent(double current) {
   ssd1306::WriteString(buffer, ssd1306::Font_16x24, ssd1306::White);
 }
 
-void setVoltage(double voltage) {
+void setVoltage(float voltage) {
   ssd1306::SetCursor(0, 30);
   std::snprintf(buffer, sizeof(buffer), "%0.5fV", voltage);
   ssd1306::WriteString(buffer, ssd1306::Font_16x24, ssd1306::White);
