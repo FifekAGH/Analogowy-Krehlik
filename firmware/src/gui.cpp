@@ -40,7 +40,7 @@ void setCurrent(float current) {
   } else if (isInNanoAmps) {
     std::snprintf(buffer, sizeof(buffer), "%0.2fuA", current);
   } else if (isInMicroAmps) {
-    std::snprintf(buffer, sizeof(buffer), "%0.3fmA", current / 1000.0f);
+    std::snprintf(buffer, sizeof(buffer), "%0.4fmA", current / 1000.0f);
   } else {
     std::snprintf(buffer, sizeof(buffer), "err");
   }
